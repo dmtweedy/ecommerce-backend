@@ -12,11 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mount the main router under the /api endpoint
-app.use('/api', routes);
+app.use('./api', routes);
 
 // Sync Sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
-    console.log(`App listening on http://localhost:${PORT}!`);
+    console.log(`App listening on http://localhost:${PORT}`);
   });
 });
