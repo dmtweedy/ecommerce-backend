@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
-  DB_NAME,
-  DB_USERNAME,
-  DB_PASSWORD,
+  process.env.DB_NAME,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
-    host: DB_HOST,
+    host: process.env.DB_HOST,
     dialect: 'mysql',
     dialectOptions: {
       decimalNumbers: true,
