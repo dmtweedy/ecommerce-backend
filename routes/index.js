@@ -1,13 +1,10 @@
 const router = require('express').Router();
+const apiRoutes = require('./api');
 
-const categoryRoutes = require('./api/category-routes');
-const productRoutes = require('./api/product-routes');
-const tagRoutes = require('./api/tag-routes');
-const productTagRoutes = require('./api/product-tag-routes');
+router.use('/api', apiRoutes);
 
-router.use('/api/categories', categoryRoutes);
-router.use('/api/products', productRoutes);
-router.use('/api/tags', tagRoutes);
-router.use('/api/product-tags', productTagRoutes);
+router.use((req, res) => {
+  res.send("<h1>Wrong Route!</h1>")
+});
 
 module.exports = router;

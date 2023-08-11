@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
-const Product = require('./Product');
-const Tag = require('./Tag');
+const Product = require('./Product'); // Require the Product model
+const Tag = require('./Tag'); // Require the Tag model
 
 class ProductTag extends Model {}
 
@@ -9,20 +9,21 @@ ProductTag.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     product_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Product', // Change to 'Product'
+        model: 'products',
         key: 'id',
       },
     },
     tag_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Tag', // Change to 'Tag'
+        model: 'tags',
         key: 'id',
       },
     },
@@ -30,18 +31,14 @@ ProductTag.init(
   {
     sequelize,
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
-    modelName: 'ProductTag', // Change to 'ProductTag'
-    tableName: 'product_tags', // Change to 'product_tags'
+    tableName: 'product_tags',
   }
 );
 
-// Establish associations with Product and Tag
-ProductTag.belongsTo(Product, {
-  foreignKey: 'product_id',
-});
-ProductTag.belongsTo(Tag, {
-  foreignKey: 'tag_id',
-});
+// Set up associations
+ProductTag.belongsTo(Product, { foreignKey: 'product_id' });
+ProductTag.belongsTo(Tag, { foreignKey: 'tag_id' });
 
 module.exports = ProductTag;

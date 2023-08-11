@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
+const Product = require('./Product'); // Require the Product model
 
 class Category extends Model {}
 
@@ -7,6 +8,7 @@ Category.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -18,10 +20,13 @@ Category.init(
   {
     sequelize,
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
-    modelName: 'Category', // Change to 'Category'
-    tableName: 'categories', // Change to 'categories'
+    tableName: 'categories',
   }
 );
+
+// Set up associations
+Category.hasMany(Product, { foreignKey: 'category_id' });
 
 module.exports = Category;
