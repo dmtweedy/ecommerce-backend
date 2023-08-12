@@ -9,7 +9,7 @@ ProductTag.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -19,6 +19,8 @@ ProductTag.init(
         model: 'products',
         key: 'id',
       },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
     },
     tag_id: {
       type: DataTypes.INTEGER,
@@ -26,6 +28,8 @@ ProductTag.init(
         model: 'tags',
         key: 'id',
       },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
     },
   },
   {

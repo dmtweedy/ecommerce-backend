@@ -8,7 +8,7 @@ Product.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -37,6 +37,8 @@ Product.init(
         model: 'categories',
         key: 'id',
       },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL'
     },
   },
   {
