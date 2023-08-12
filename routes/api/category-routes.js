@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-router.get('/categories', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const categories = await Category.findAll({
       include: [{ model: Product }],
@@ -12,7 +12,7 @@ router.get('/categories', async (req, res) => {
   }
 });
 
-router.get('/categories/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const category = await Category.findByPk(req.params.id, {
       include: [{ model: Product }],
@@ -27,7 +27,7 @@ router.get('/categories/:id', async (req, res) => {
   }
 });
 
-router.post('/categories', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const category = await Category.create(req.body);
     res.status(201).json(category);
@@ -36,7 +36,7 @@ router.post('/categories', async (req, res) => {
   }
 });
 
-router.put('/categories/:id', async (req, res) => {
+router.put('/', async (req, res) => {
   try {
     const category = await Category.update(req.body, {
       where: { id: req.params.id },
@@ -47,7 +47,7 @@ router.put('/categories/:id', async (req, res) => {
   }
 });
 
-router.delete('/categories/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
   try {
     await Category.destroy({
       where: { id: req.params.id },
