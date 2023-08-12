@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const category = await Category.update(req.body, {
       where: { id: req.params.id },
@@ -47,7 +47,7 @@ router.put('/', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     await Category.destroy({
       where: { id: req.params.id },

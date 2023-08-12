@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
     if (req.body.tagIds && req.body.tagIds.length) {
@@ -39,7 +39,7 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.put('/:id/update', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     await Product.update(req.body, {
       where: { id: req.params.id },
@@ -54,7 +54,7 @@ router.put('/:id/update', async (req, res) => {
   }
 });
 
-router.delete('/:id/delete', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     await Product.destroy({
       where: { id: req.params.id },
